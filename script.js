@@ -48,30 +48,36 @@ let num2 = '';
 let operator = '';
 let result = '';
 
-// Initialize display
-let displayValue = '';
-
 // Listen for any button
 btns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
         if (btn.id === 'btn-ac') {
-            console.log('clear');
             display.innerHTML = '&nbsp;';
             num1 = '';
             num2 = '';
             operator = '';
+            result = '';
         }
 
         if (btn.id === 'btn-del') {
             if (operator != '') {
                 if (num2.length > 0) {
                     num2 = num2.slice(0, -1);
-                    console.log(`num2: ${num2}`);
+                    if (num2.length === 0) {
+                        display.innerHTML = '&nbsp;';
+                    } else {
+                        display.innerText = num2;
+                    }
                 }
             } else {
                 if (num1.length > 0) {
                     num1 = num1.slice(0, -1);
-                    console.log(`num1: ${num1}`);
+                    if (num1.length === 0) {
+                        display.innerHTML = '&nbsp;';
+                    } else {
+                        display.innerText = num1;
+                    }
+
                 }
             }
         }
@@ -82,18 +88,20 @@ numberBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
         if (operator === '') {
             if (result != '') {
+                result = '';
                 num1 = '';
                 num2 = '';
                 operator = '';
                 num1 += e.target.innerText;
-                console.log(`num1: ${num1}`);
+                display.innerText = num1;
             } else {
                 num1 += e.target.innerText;
-                console.log(`num1: ${num1}`);
+
+                display.innerText = num1;
             }
         } else {
             num2 += e.target.innerText;
-            console.log(`num2: ${num2}`);
+            display.innerText = num2;
         }
     });
 });
@@ -102,17 +110,17 @@ operatorBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
         if (operator === '' && btn.id != 'btn-equal' && num1 != '') {
             operator = e.target.innerText;
-            console.log(`opr: ${operator}`);
+            display.innerText += operator;
         } else if (btn.id === 'btn-equal') {
             if (num2 != '') {
                 result = operate(operator, parseFloat(num1), parseFloat(num2));
                 if (result === 'ERROR') {
-                    console.log('ERROR');
+                    display.innerText = 'ERROR';
                     operator = '';
                     num1 = result;
                     num2 = '';
                 } else {
-                    console.log(`result: ${1 * result.toFixed(3)}`);
+                    display.innerText = (1 * result.toFixed(3));
                     operator = '';
                     num1 = result;
                     num2 = '';
@@ -121,9 +129,9 @@ operatorBtns.forEach((btn) => {
         } else {
             if (num2 != '') {
                 result = operate(operator, parseFloat(num1), parseFloat(num2));
-                console.log(`result: ${1 * result.toFixed(3)}`);
+                display.innerText = (1 * result.toFixed(3));
                 operator = e.target.innerText;
-                console.log(`opr: ${operator}`);
+                display.innerText += operator;
                 num1 = result;
                 num2 = '';
             }
