@@ -42,15 +42,16 @@ const numberBtns = document.querySelectorAll('.btn-number');
 const operatorBtns = document.querySelectorAll('.btn-opr');
 const display = document.querySelector('.display');
 
-// Declare variables for operate function
+// Declare variables for operate function and HTML display
 let num1 = '';
 let num2 = '';
 let operator = '';
 let result = '';
 
-// Listen for any button
+// Listen for AC and Delete buttons
 btns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
+        // If AC button, clear all values
         if (btn.id === 'btn-ac') {
             display.innerHTML = '&nbsp;';
             num1 = '';
@@ -58,9 +59,11 @@ btns.forEach((btn) => {
             operator = '';
             result = '';
         }
-
+        // If Delete button...
         if (btn.id === 'btn-del') {
+            // If operator, only delete num2
             if (operator != '') {
+                // If num2 has values, delete until empty, then insert placeholder
                 if (num2.length > 0) {
                     num2 = num2.slice(0, -1);
                     if (num2.length === 0) {
@@ -70,6 +73,7 @@ btns.forEach((btn) => {
                     }
                 }
             } else {
+                // If num1 has values, delete until empty, then insert placeholder
                 if (num1.length > 0) {
                     num1 = num1.slice(0, -1);
                     if (num1.length === 0) {
@@ -86,7 +90,9 @@ btns.forEach((btn) => {
 // Listen for numbered buttons
 numberBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
+        // Only update num1 if no operator selected, otherwise update num2
         if (operator === '') {
+            // Remove all values if result from previous calculation is true (start over)
             if (result != '') {
                 result = '';
                 num1 = '';
@@ -96,7 +102,6 @@ numberBtns.forEach((btn) => {
                 display.innerText = num1;
             } else {
                 num1 += e.target.innerText;
-
                 display.innerText = num1;
             }
         } else {
@@ -108,18 +113,22 @@ numberBtns.forEach((btn) => {
 // Listen for operator buttons
 operatorBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
+        // Check if only num1 has value, then select operator
         if (operator === '' && btn.id != 'btn-equal' && num1 != '') {
             operator = e.target.innerText;
             display.innerText += operator;
         } else if (btn.id === 'btn-equal') {
+            // If equals is selected, make sure num2 has a value
             if (num2 != '') {
                 result = operate(operator, parseFloat(num1), parseFloat(num2));
+                // Display error if operate function fails
                 if (result === 'ERROR') {
                     display.innerText = 'ERROR';
                     operator = '';
                     num1 = result;
                     num2 = '';
                 } else {
+                    // Display result and make sure to preserve result in num1 if user continues to calculate
                     display.innerText = (1 * result.toFixed(3));
                     operator = '';
                     num1 = result;
@@ -127,6 +136,7 @@ operatorBtns.forEach((btn) => {
                 }
             }
         } else {
+            // If user selects operator instead of equals, continue calculating and updating result
             if (num2 != '') {
                 result = operate(operator, parseFloat(num1), parseFloat(num2));
                 display.innerText = (1 * result.toFixed(3));
