@@ -1,3 +1,6 @@
+/* GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Play:wght@400;700&display=swap');
+
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -68,6 +71,11 @@ h6 {
 }
 
 /* GLOBAL */
+body {
+    font-family: 'Play', sans-serif;
+    background-color: #d8dad5;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -80,8 +88,83 @@ h6 {
     margin-top: 50px;
 }
 
+.calc-outer {
+    border: 1px solid #000;
+    padding: 15px;
+    background-color: #131511;
+    border-radius: 10px;
+}
+
+.screen {
+    background-color: #86867a;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.display {
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 700;
+    font-size: 3em;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #5c5943;
+    padding-right: 8px;
+    border-radius: 5px;
+}
+
+.calc-bottom {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.btn {
+    font-size: 2em;
+    padding: 10px;
+    background-color: #353732;
+    border: 2px solid #6f7369;
+    color: #e1e0d4;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.btn:hover {
+    background-color: #2f312d;
+}
+
+.span-2 {
+    grid-column: span 2;
+}
+
+.btn-color-dark {
+    background-color: #19180c;
+    border: 2px solid #2f312d;
+}
+
+.btn-color-dark:hover {
+    background-color: #262724;
+}
+
+.btn-color-light {
+    background-color: #a8a37c;
+    color: #19180c;
+    border: 2px solid #2f312d;
+}
+
+.btn-color-light:hover {
+    background-color: #484635;
+    color: #e1e0d4;
+}
+
 /* FOOTER */
 
 .footer {
     text-align: center;
+}
+
+.footer p {
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-top: 50px;
 }

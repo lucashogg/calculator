@@ -1,0 +1,1 @@
+operatorBtns.forEach((btn) => {
