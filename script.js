@@ -1,3 +1,15 @@
+// Get DOM elements
+const btns = document.querySelectorAll('.btn');
+const numberBtns = document.querySelectorAll('.btn-number');
+const operatorBtns = document.querySelectorAll('.btn-opr');
+const display = document.querySelector('.display');
+
+// Declare variables for operate function and HTML display
+let num1 = '';
+let num2 = '';
+let operator = '';
+let result = '';
+
 // Calculator functions
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
@@ -33,18 +45,6 @@ const operate = (operator, num1, num2) => {
     return result;
 }
 
-// Get DOM elements
-const btns = document.querySelectorAll('.btn');
-const numberBtns = document.querySelectorAll('.btn-number');
-const operatorBtns = document.querySelectorAll('.btn-opr');
-const display = document.querySelector('.display');
-
-// Declare variables for operate function and HTML display
-let num1 = '';
-let num2 = '';
-let operator = '';
-let result = '';
-
 // Listen for AC and Delete buttons
 btns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
@@ -73,7 +73,6 @@ btns.forEach((btn) => {
                     } else {
                         display.innerText = num1;
                     }
-
                 }
             }
         }
