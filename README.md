@@ -6,6 +6,8 @@ View live site on [GitHub Pages](https://lucashogg.github.io/calculator/)
 
 > Our final project is going to combine everything you’ve learned so far: you’re going to make an on-screen calculator using JavaScript, HTML, and CSS.
 
+![calculator](https://github.com/lucashogg/calculator/assets/73367876/cb348ae6-07a6-4398-9d1f-d9655c6fe9e8)
+
 In this **The Odin Project** assignment we are tasked with building a web-based, functioning calculator.
 
 ### Features
